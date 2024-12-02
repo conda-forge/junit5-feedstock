@@ -23,6 +23,7 @@ tee ${PREFIX}/bin/junit5 << EOF
 #!/bin/sh
 exec \${JAVA_HOME}/bin/java -jar \${CONDA_PREFIX}/libexec/junit5/junit-platform-console-standalone.jar "\$@"
 EOF
+chmod +x ${PREFIX}/bin/junit5
 
 tee ${PREFIX}/bin/junit5.cmd << EOF
 call %JAVA_HOME%\bin\java -jar %CONDA_PREFIX%\libexec\junit5/junit-platform-console-standalone.jar %*

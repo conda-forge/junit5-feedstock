@@ -1,17 +1,17 @@
-{% set name = "junit5" %}
-{% set version = "5.10.3" %}
+context:
+  version: 5.10.3
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: junit5
+  version: ${{ version }}
 
 source:
-  git_url: https://github.com/junit-team/{{ name }}
-  git_rev: r{{ version }}
+  git: https://github.com/junit-team/junit5
+  tag: r${{ version }}
 
 build:
-  noarch: generic
   number: 0
+  noarch: generic
 
 requirements:
   build:
@@ -21,18 +21,18 @@ requirements:
   run:
     - openjdk
 
-test:
-  commands:
-    - {{ name }} --help
+tests:
+  - script:
+      - junit5 --help
 
 about:
-  home: https://github.com/junit-team/{{ name }}
   license: EPL-2.0
   license_file:
     - LICENSE.md
     - build/reports/dependency-license/
   summary: The 5th major version of the programmer-friendly testing framework for Java and the JVM
-  dev_url: https://github.com/junit-team/{{ name }}
+  homepage: https://github.com/junit-team/junit5
+  repository: https://github.com/junit-team/junit5
 
 extra:
   recipe-maintainers:
