@@ -17,10 +17,10 @@ build:
   noarch: generic
 
 requirements:
-  build:
+  host:
     - git
     - maven
-    - openjdk =17
+    - openjdk
     - sed
   run:
     - openjdk
