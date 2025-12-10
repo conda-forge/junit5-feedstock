@@ -2,7 +2,6 @@
 
 set -o xtrace -o nounset -o pipefail -o errexit
 
-
 # Build with maven
 mkdir -p ${PREFIX}/libexec/${PKG_NAME}
 mkdir -p ${PREFIX}/bin
@@ -12,10 +11,9 @@ sed -i 's/id("junitbuild.temp-maven-repo")/id("junitbuild.temp-maven-repo")\nid(
 unset CI
 ./gradlew build -x signMavenPublication -x publishMavenPublicationToTempRepository -x test
 
-./gradlew generateLicenseReport
+./gradlew generateLicenseReport --no-parallel
 
-platform_version=$(grep "platformVersion" < gradle.properties | tr -s ' ' | cut -d ' ' -f 3)
-cp ${SRC_DIR}/junit-platform-console-standalone/build/libs/junit-platform-console-standalone-${platform_version}.jar \
+cp ${SRC_DIR}/junit-platform-console-standalone/build/libs/junit-platform-console-standalone-${PKG_VERSION}.jar \
     ${PREFIX}/libexec/${PKG_NAME}/junit-platform-console-standalone.jar
 
 # Create bash and batch files
